@@ -1,0 +1,14 @@
+function dy = shapepolymer(u,y,para,sigma,kappa,f)
+dy = zeros(6,1);    % a column vector
+psi = y(1);
+dpsi = y(2);
+J = y(3);
+r = y(4);
+%z = y(5);
+eta = y(6);
+dy(1) = dpsi;
+dy(2) = -J*dpsi*cos(psi)/r+sin(psi)*cos(psi)*J^2/r^2+sigma*sin(psi)*J^2/kappa-J^2*cos(psi)*f/(2*pi*kappa*r)+(J^2*eta*sin(psi))/(2*r);
+dy(3) = 0;
+dy(4) = J*cos(psi);
+dy(5) = -J*sin(psi);
+dy(6) = dpsi^2/J-J*sin(psi)^2/r^2+2*J*(1-cos(psi))*sigma/kappa;
